@@ -1,47 +1,52 @@
 #include <iostream>
 
 using namespace std;
-
+template <typename T>
 class human{
 	private:
-		int size_arm, size_leg;
+		T *size_arm, *size_leg;
 	public:
-		human();
-		human(int, int);
+		human(T*, T*);
 		~human();
-		int s_a();
-		int s_l();
+		T s_a();
+		T s_l();
 		void print();
+		void ace();
 };
 
-human::human(){
-	size_leg = 0;
-	size_arm = 0;
-}
-
-human::human(int size_leg_t, int size_arm_t){
+template <typename T>
+human<T>::human(T* size_leg_t, T* size_arm_t){
 	size_arm = size_arm_t;
 	size_leg = size_leg_t;
 }
 
-human::~human(){
+template <typename T>
+human<T>::~human(){
 }
 
-int human::s_a(){
+template <typename T>
+T human<T>::s_a(){
 	return size_arm;
 }
 
-int human::s_l(){
+template <typename T>
+T human<T>::s_l(){
 	return size_leg;
 }
 
-void human::print(){
+template <typename T>
+void human<T>::print(){
 	cout << size_leg << endl;
 	cout << size_arm << endl;
 }
 
+template <typename T>
+void human<T>::ace(){
+	cout << "Hey!";
+}
 int main(){
-	human Renat(10, 20);
+	human<char> Renat("kek", "lol");
 	Renat.print();
+	Renat.ace();
 	return 0;
 }

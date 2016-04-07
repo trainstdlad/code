@@ -1,0 +1,197 @@
+<html>
+<head>
+    <meta charset="windows-1251">
+    <style type='text/css'>
+        table, th, td, .ts2 {
+            border-style: solid;
+            border-width: 1px;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+        .ts2 {
+            height: 28px;
+            background-color: #ffffff;
+            color: black;
+            border-color: black;
+        }
+
+        th {
+            height: 40px;
+            background-color: #ffffff;
+            color: black;
+            border-color: black;
+        }
+
+    </style>
+    <script type="text/javascript"
+            src="https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }"></script>
+
+    <script type="text/javascript">
+
+        function drawChart(d, title){
+            d.unshift(title);
+            var data = google.visualization.arrayToDataTable(d);
+            var options = {
+                title: "Probability of losses",
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        }
+        window.onload = function(){
+            var pk = [];
+            pk.push([0, 0]);
+            drawChart(pk, ["k", "P_k"]);
+        }
+
+        function create_table(table_id, date, title){
+            tb = document.getElementById(table_id);
+            var row = tb.insertRow();
+            for(var i = 0; i != title.length; i++){
+                row.innerHTML += "<th>" + title[i] + "</th>";
+            }
+            for(var row_index = 0; row_index != date.length; row_index++){
+                row = tb.insertRow();
+                for(var cell_index = 0; cell_index != date[row_index].length; cell_index++){
+                    var cell = row.insertCell();
+                    cell.innerHTML = date[row_index][cell_index];
+                    if(row_index % 2 != 0){
+                        cell.setAttribute("class", "ts1");
+                    }
+                }
+            }
+        }
+
+        function delete_table(table_id){
+            tab = document.getElementById(table_id);
+            while (tab.rows.length != 0){
+                tab.deleteRow(0);
+            }
+        }
+
+        function create_data(l, m, f){
+            var r = l / m;
+            var pk = [];
+            return pk;
+        }
+
+        function build(){
+            var model = parseInt(document.getElementById("my_select").value);
+            var l = parseFloat(document.getElementById("l").value);
+            var m = parseFloat(document.getElementById("m").value);
+            var r = l / m;
+            document.getElementById("l_da").innerHTML = "";
+            document.getElementById("mu").innerHTML = "";
+            var wr_edit = document.getElementById("wr");
+            var wq_edit = document.getElementById("wq");
+            var lq_edit = document.getElementById("lq");
+            var k_edit = document.getElementById("k");
+
+            if(l < 0){
+                document.getElementById("l_da").innerHTML = "l_da < 0";
+                return;
+            }
+            if(m < 0){
+                document.getElementById("mu").innerHTML = "mu < 0";
+                return;
+            }
+
+            switch(model){
+                case 1:
+                    wr_edit.innerHTML = (1 / (m - l)).toFixed(2);
+                    wq_edit.innerHTML = (l / (m * (m - l))).toFixed(2);
+                    lq_edit.innerHTML = ((l * l) / (m * (m - l))).toFixed(2);
+                    k_edit.innerHTML = (l / (m - l)).toFixed(2);
+                    var data = [];
+                    for (var k = 0; k <= 10; k++) {
+                        data.push([k, (1 - r) * Math.pow(r, k)]);
+                    }
+                    delete_table("mytab");
+                    create_table("mytab", data, ["P_k", "Probability of losses"]);
+                    drawChart(data, ["k", "Pk"]);
+                    break;
+                default:
+                    v_input.setAttribute("readonly", "");
+                    v_input.setAttribute("style", "background-color:black");
+                    v_input.value = "";
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <table width="100%" height="100%" style="border-width: 0px;border:none none;">
+        <tr border="0">
+            <td width="20%" style="border-width: 0px; border:none none;">
+                <table style="border-width: 0px;border:none none;">
+                    <tr>
+                        <td style="border-width: 0px; border:none none;">
+                            <label id="2">l_da:</label>
+                        </td>
+                        <td style="border-width: 0px; border:none none;">
+                            <label id="l_da" style="color:red"></label>
+                            <input type="number" size="40" placeholder="" id="l">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-width: 0px; border:none none;">
+                            <label>mu:</label>
+                        </td>
+                        <td style="border-width: 0px; border:none none;">
+                            <label id="mu" style="color:red"></label>
+                            <input type="number" size="40" id="m">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-width: 0px; border:none none" ;>
+                            <select id="my_select" onchange="select()" name="my_select">
+                                <option value="1">M/M/1</option>
+                            </select>
+                        </td>
+                        <td style="border-width: 0px; border:none none;">
+                            <input class="button" type="button" onclick="build();" value="Count" />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="ts2" border="0">  Average time of service:</td>
+                        <td><label id="wr">0</label> </td>
+                    </tr>
+                    <tr border="0" class="ts1">
+                        <td td class="ts2"> Average time stay in turn</tdborder="0">
+                        <td><label id="wq">0</label> </td>
+                    </tr>
+                    <tr>
+                        <td td class="ts2"> The average time of calls in turn:</td>
+                        <td><label id="lq">0</label> </td>
+                    </tr>
+                    <tr class="ts1">
+                        <td td class="ts2">Requirement average in system:</td>
+                        <td><label id="k">0</label></td>
+                    </tr>
+                </table>
+                <table id="mytab">
+                    <thead>Table of probability of losses</thead>
+                    <th>P_k</th>
+                    <th>Probability of loss</th>
+                </table>
+            </td>
+            <td width="80%" style="border-width: 0px; border:none none;">
+                <div id="curve_chart" style="width: 100%; height:100%"></div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
