@@ -82,7 +82,7 @@ int list1::get_value(){
 
 int main(){
 	list1 L;
-	for(int i = 0; i < 5; i++)
+	for(int i = 1; i < 5; i++)
 		L.add(i);
 	L.goto_first();
 	cout << L.get_value() << endl;
