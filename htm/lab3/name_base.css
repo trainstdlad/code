@@ -1,0 +1,38 @@
+    @import url("name_base2.css");
+    .block1 { 
+    font-weight: bold;
+    width: 1000px; 
+    background: #ccc;
+    padding: 5px;
+    padding-right: 20px; 
+    border: solid 1px black; 
+    position: relative; 
+    float: center;
+    left: 420px; 
+    font-size: 20px;
+    font-family: Times New Roman;
+   }
+   
+   .block2 { 
+    width: 1000px; 
+    padding: 5px;
+    padding-right: 20px; 
+    position: relative; 
+    float: center;
+    left: 420px; 
+    font-size: 20px;
+   }
+   
+   .block3 {
+    font-style: oblique;
+    font-weight: bold;
+    text-decoration: underline;
+   }
+   
+   .block4 {
+    background: #ccc;
+    font-style: oblique;
+    font-weight: bold;
+   }
+ 
+   

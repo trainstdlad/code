@@ -1,0 +1,18 @@
+ .block5 {
+    font-style: oblique;
+   }
+   
+   .block6 {
+    background: #ccc;
+   }
+   
+   .block7 {
+    position: relative; 
+    left: 510px; 
+    border: solid 1px;
+    border-collapse: separate;
+   }
+   
+   td {
+    border: 1px solid #000;
+   }
