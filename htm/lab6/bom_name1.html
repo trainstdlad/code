@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="dom_name_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="dom_name_style.css">
+  </head>
+  <body>
+    <p style="text-align: right"><button onClick=format()>Формат</button>
+    <button onClick=cancel()>Отмена</button></p>
+    <div id="h">
+      <h1 align="center">Заголовок1</h1>
+    </div>
+    <p id="p">Создайте новый html-документ dom_name.htm, в файл поместите заголовок, три абзаца произвольного содержания. В правом верхнем углу окна поместите две кнопки «Формат» и «Отмена». Выполните разметку с помощью только блоковых тэгов и CSS.</p>
+    <p id="pp">Создайте новый html-документ dom_name.htm, в файл поместите заголовок, три абзаца произвольного содержания. В правом верхнем углу окна поместите две кнопки «Формат» и «Отмена». Выполните разметку с помощью только блоковых тэгов и CSS.</p>
+    <table id="table">
+	  <tr>
+		    <th onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">1</th>
+		    <th onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">2</th>
+		    <th onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">3</th>
+	  </tr>
+    <tr>
+		    <td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+	      <td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+    		<td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+	  </tr>
+	  <tr>
+		    <td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+		    <td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+		    <td onMouseOver="this.style.background='#6E02F2'" onMouseOut="this.style.background=''">Текст</td>
+	  </tr>
+	  </table>
+	  <p align="center"><button onClick=ly1()>Невидимый средний слой</button>
+    <button onClick=ly2()>Видимый средний слой</button>
+    <button onClick=ly3()>Поменять верхний и нижний слой</button></p>
+	  <div class="pic1"><img src="1.jpg"></div>
+	  <div class="pic2"><img src="2.jpg"></div>
+	  <div class="pic3"><img src="3.jpg"></div>
+  </body>
+</html>
